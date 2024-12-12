@@ -1,2 +1,5 @@
 streamlit
-together
+langchain
+openai
+chromadb
+tiktoken
