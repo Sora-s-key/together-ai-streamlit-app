@@ -3,9 +3,13 @@ import streamlit as st
 import os
 from together import Together
 
-os.environ['TOGETHER_API_KEY'] = st.secrets["TOGETHER_API_KEY"]
+# Load API key from Streamlit secrets
+os.environ["TOGETHER_API_KEY"] = st.secrets["TOGETHER_API_KEY"]
 
-# Initialize Together client
+# Define the model to use
+model = "codellama/CodeLlama-7b-Instruct-hf"  # Smaller version that may work
+
+# Initialize Together AI client
 client = Together()
 
 # Function to generate Python code using CodeLlama
@@ -29,12 +33,12 @@ def generate_code_with_codellama(description):
 
         # Call Together AI
         response = client.chat.completions.create(
-            model="codellama/CodeLlama-7b-Instruct-hf",  # CodeLlama model
+            model=model,  # Using the model variable
             messages=[{"role": "user", "content": prompt}]
         )
 
         # Extract the generated code
-        generated_code = response.choices[0].message.content.strip()
+        generated_code = response.choices[0].message["content"].strip()
         return generated_code
 
     except Exception as e:
@@ -57,12 +61,3 @@ if st.button("Generate Code"):
         st.code(generated_code, language="python")
     else:
         st.error("Please provide a valid description.")
-
-response = client.chat.completions.create(
-    model=model,  # <-- Use the model variable here
-    messages=[{"role": "user", "content": prompt}]
-)
-
-
-
-        
