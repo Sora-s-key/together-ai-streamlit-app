@@ -37,8 +37,8 @@ def generate_code_with_codellama(description):
             messages=[{"role": "user", "content": prompt}]
         )
 
-        # Extract the generated code
-        generated_code = response.choices[0].message["content"].strip()
+        # ✅ FIX: Correctly extract the content from response
+        generated_code = response.choices[0].message.content.strip()
         return generated_code
 
     except Exception as e:
