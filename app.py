@@ -7,7 +7,7 @@ from together import Together
 os.environ["TOGETHER_API_KEY"] = st.secrets["TOGETHER_API_KEY"]
 
 # Define the model to use
-model = "codellama/CodeLlama-7b-Instruct-hf"  # Smaller version that may work
+model = "mistralai/Mistral-7B-Instruct"  # Works without a dedicated endpoint
 
 # Initialize Together AI client
 client = Together()
