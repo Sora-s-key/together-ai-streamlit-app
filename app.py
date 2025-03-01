@@ -29,7 +29,7 @@ def generate_code_with_codellama(description):
 
         # Call Together AI
         response = client.chat.completions.create(
-            model="codellama/CodeLlama-34b-Instruct-hf",  # CodeLlama model
+            model="codellama/CodeLlama-7b-Instruct-hf",  # CodeLlama model
             messages=[{"role": "user", "content": prompt}]
         )
 
@@ -57,4 +57,12 @@ if st.button("Generate Code"):
         st.code(generated_code, language="python")
     else:
         st.error("Please provide a valid description.")
+
+response = client.chat.completions.create(
+    model=model,  # <-- Use the model variable here
+    messages=[{"role": "user", "content": prompt}]
+)
+
+
+
         
